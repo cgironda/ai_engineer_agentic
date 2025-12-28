@@ -1,8 +1,5 @@
 import os
 from typing import Dict
-
-# import sendgrid
-# from sendgrid.helpers.mail import Email, Mail, Content, To
 import sib_api_v3_sdk
 from sib_api_v3_sdk import SendSmtpEmail
 from sib_api_v3_sdk.rest import ApiException
