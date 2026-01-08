@@ -14,20 +14,20 @@ This document captures the end-to-end workflow to run the Trading Account backen
 
 ### Backend (Python)
 ```bash
-pip install -r /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/output_cp/requirements.txt
+pip install -r $HOME/agentic/crew_prj/dev_team/output_cp/requirements.txt
 ```
 
 ### Frontend (Node)
 ```bash
-cd /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/ui
-PATH=/Users/cgironda/.nvm/versions/node/v20.19.6/bin:$PATH npm install
+cd ~./agentic/crew_prj/dev_team/ui
+PATH=$HOME/.nvm/versions/node/v20.19.6/bin:$PATH npm install
 ```
 
 ## Configuration (Optional)
 Copy the example env file and adjust values as needed:
 ```bash
-cp /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/output_cp/.env.example \
-  /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/output_cp/.env
+cp $HOME/agentic/crew_prj/dev_team/output_cp/.env.example \
+   $HOME/agentic/crew_prj/dev_team/output_cp/.env
 ```
 
 Common settings:
@@ -39,14 +39,14 @@ Common settings:
 
 ## Start the Backend API + Gradio
 ```bash
-cd /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/output_cp
+cd $HOME/agentic/crew_prj/dev_team/output_cp
 uvicorn api:app --host 127.0.0.1 --port 8000
 ```
 
 ## Start the Svelte UI
 ```bash
-cd /Users/cgironda/projects/Data_Science/AI_Engineer/agentic/crew_prj/dev_team/ui
-PATH=/Users/cgironda/.nvm/versions/node/v20.19.6/bin:$PATH npm run dev -- --host 127.0.0.1 --port 5173
+cd $HOME/agentic/crew_prj/dev_team/ui
+PATH=$HOME/.nvm/versions/node/v20.19.6/bin:$PATH npm run dev -- --host 127.0.0.1 --port 5173
 ```
 
 ## Verify Runtime
