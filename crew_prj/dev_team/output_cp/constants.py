@@ -1,0 +1,2 @@
+SUPPORTED_SYMBOLS = ("AAPL", "TSLA", "GOOGL")
+SESSION_HEADER = "X-Session-Token"

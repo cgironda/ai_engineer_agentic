@@ -76,7 +76,7 @@ class TestAccount(unittest.TestCase):
         self.assertIn("Deposited: 100", self.account.report_transactions())
 
     def test_get_share_price(self) -> None:
-        for symbol, expected_price in (("AAPL", 150.0), ("TSLA", 225.0), ("GOOGL", 280.0)):
+        for symbol, expected_price in (("AAPL", 150.0), ("TSLA", 700.0), ("GOOGL", 2800.0)):
             self.assertEqual(get_share_price(symbol), expected_price)
 
 
