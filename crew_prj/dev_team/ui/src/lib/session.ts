@@ -1,7 +1,20 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
-const initialToken = browser ? localStorage.getItem('session_token') : null;
+const TOKEN_KEY = 'session_token';
+
+const readStoredToken = () => {
+  if (!browser) {
+    return null;
+  }
+  try {
+    return sessionStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const initialToken = readStoredToken();
 
 export const sessionToken = writable<string | null>(initialToken);
 
@@ -9,10 +22,14 @@ sessionToken.subscribe((value) => {
   if (!browser) {
     return;
   }
-  if (value) {
-    localStorage.setItem('session_token', value);
-  } else {
-    localStorage.removeItem('session_token');
+  try {
+    if (value) {
+      sessionStorage.setItem(TOKEN_KEY, value);
+    } else {
+      sessionStorage.removeItem(TOKEN_KEY);
+    }
+  } catch {
+    // Ignore storage failures (private mode or blocked storage).
   }
 });
 
