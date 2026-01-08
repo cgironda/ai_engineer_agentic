@@ -1,0 +1,11 @@
+flowchart TD
+  A[Install Python deps] --> B[Install Node deps]
+  B --> C[Configure env file]
+  C --> D[Start Backend: uvicorn api:app]
+  C --> E[Start UI: npm run dev]
+  D --> F[Verify API health]
+  E --> G[Open Svelte UI]
+  D --> H[Open Gradio UI]
+  F --> I[Stop servers when done]
+  G --> I
+  H --> I
