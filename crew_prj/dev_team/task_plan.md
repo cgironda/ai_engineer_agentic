@@ -82,5 +82,3 @@ Understanding the core architectural drivers, such as performance, scalability, 
 7. **Testing & QA**: add unit, API, and UI tests.
 8. **Docs & ops**: finalize README updates and deployment guidance.
 
-Use this plan as Codex's checklist to implement and validate the application without deviating from the architecture above.
-
