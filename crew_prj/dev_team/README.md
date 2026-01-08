@@ -124,5 +124,5 @@ $ python app.py
 If you need help, have questions, or want to share feedback about DevTeam Crew check:
 - Visit [documentation](https://docs.crewai.com)
 - Reach out to [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
+- [Join Discord](https://discord.com/invite/X4JWnZnxPb)
 - [Chat with the docs](https://chatg.pt/DWjSBZn)
