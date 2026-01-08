@@ -114,6 +114,52 @@ $ cd crew_prj/dev_team/output
 $ python app.py
 ```
 
+### API + UI (production-friendly flow)
+
+The generated backend in `output_4o/app.py` now mounts a FastAPI router alongside the Gradio developer console.
+
+**Run the backend**
+```bash
+cd crew_prj/dev_team/output_4o
+uvicorn app:app --reload --host 0.0.0.0 --port 7860
+```
+
+**Gradio developer console**
+- Visit `http://localhost:7860/` to exercise account creation, deposits/withdrawals, trading, and reports.
+- Provide a session token (or let the UI create one) to avoid state collisions between users.
+
+**FastAPI JSON endpoints (for the Svelte SPA)**
+- Create account: `POST /api/account/create`
+- Deposit funds: `POST /api/account/deposit`
+- Withdraw funds: `POST /api/account/withdraw`
+- Buy shares: `POST /api/trade/buy`
+- Sell shares: `POST /api/trade/sell`
+- Holdings: `GET /api/holdings`
+- Transactions: `GET /api/transactions`
+- Portfolio value: `GET /api/portfolio/value`
+- Profit/Loss: `GET /api/portfolio/profit_loss`
+
+Pass the session token via `X-Session-Id` header or a `session_id` field in POST payloads. Responses follow:
+```json
+{
+  "success": true,
+  "message": "Deposit completed",
+  "data": {...},
+  "session_id": "abc123"
+}
+```
+
+**Front-end scaffold**
+A Svelte SPA is scaffolded in `crew_prj/dev_team/ui/` to consume the JSON API.
+
+```bash
+cd crew_prj/dev_team/ui
+npm install
+npm run dev
+```
+
+Configure `VITE_API_BASE_URL` in `crew_prj/dev_team/ui/.env` (see `.env.example`) to point to the backend.
+
 ## Support
 
 For support, questions, or feedback regarding the DevTeam Crew or crewAI.
