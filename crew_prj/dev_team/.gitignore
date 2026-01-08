@@ -1,7 +1,7 @@
 .env
 __pycache__/
 .DS_Store
-output_4omi_2so_4omi
+output_cp
 output_cp/*.log
 ui/*.log
 ui/node_modules/
