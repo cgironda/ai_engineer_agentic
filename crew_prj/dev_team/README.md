@@ -119,6 +119,18 @@ $ cd crew_prj/dev_team/output
 $ python app.py
 ```
 
+## Runtime Workflow (output_cp)
+
+The hardened runtime lives in `crew_prj/dev_team/output_cp` and uses HTTP-only cookies for session tokens.
+
+Session behavior:
+- The backend sets a `session_token` cookie on `POST /api/account`.
+- The API accepts either the cookie or the `X-Session-Token` header for programmatic clients.
+- To retrieve a token in the JSON response (for manual restores), send `X-Return-Token: true`.
+- Use `POST /api/session` to restore a token into the cookie jar and `POST /api/logout` to clear it.
+
+See `crew_prj/dev_team/runtime_workflow.md` for step-by-step runtime commands.
+
 ## Support
 
 If you need help, have questions, or want to share feedback about DevTeam Crew check:

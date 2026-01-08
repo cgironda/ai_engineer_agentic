@@ -54,6 +54,12 @@ PATH=$HOME/.nvm/versions/node/v20.19.6/bin:$PATH npm run dev -- --host 127.0.0.1
 - Gradio UI: `http://127.0.0.1:8000/gradio`
 - Svelte UI: `http://127.0.0.1:5173/`
 
+## Session Notes
+- The API issues an HTTP-only `session_token` cookie when creating an account.
+- API clients can pass `X-Session-Token` instead of using cookies.
+- To receive the token in the JSON response, send `X-Return-Token: true` on `POST /api/account`.
+- Use `POST /api/session` to restore a token into the cookie jar and `POST /api/logout` to clear it.
+
 ## Stop Servers
 - Use `CTRL+C` in each terminal, or:
 ```bash

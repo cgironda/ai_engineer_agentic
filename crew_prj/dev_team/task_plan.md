@@ -35,9 +35,10 @@ Understanding the core architectural drivers, such as performance, scalability, 
    - Standardize error responses so **Gradio** and the API can share the same logic.
 
 3. **JSON API Contract**
-   - Define explicit endpoints: `create_account`, `deposit`, `withdraw`, `buy`, `sell`, `status`, `holdings`, `transactions`, `prices`.
+   - Define explicit endpoints: `create_account`, `deposit`, `withdraw`, `buy`, `sell`, `status`, `holdings`, `transactions`, `prices`, `session`, `logout`.
    - Use a common response schema: `{success, message, data?, error?}`.
    - Return structured data objects for balances, holdings, and profit/loss.
+   - Allow optional token return via `X-Return-Token: true` on `create_account`.
    - Configure CORS for the Svelte dev server.
 
 4. **Gradio UI Hardening**
@@ -48,13 +49,14 @@ Understanding the core architectural drivers, such as performance, scalability, 
 5. **Svelte App Scaffolding**
    - Create a SvelteKit app at `crew_prj/dev_team/ui/` with TypeScript enabled.
    - Add routes: `Dashboard`, `Trade`, `Transactions`, `Settings`.
-   - Build a typed API client module (base URL, token header, error handling).
+   - Build a typed API client module (base URL, cookie credentials, error handling).
    - Implement components: account creation, deposit/withdraw, buy/sell, holdings summary.
    - Add lightweight charting for portfolio value history.
 
 6. **Session and Auth Flow**
-   - Establish a minimal token-based session (frontend stores token; backend maps token to account).
-   - Include token in headers for all API requests.
+   - Use HTTP-only cookies for session tokens; avoid storing tokens in browser storage.
+   - Accept `X-Session-Token` for programmatic clients when cookies are not available.
+   - Support manual restores via `POST /api/session` and clear via `POST /api/logout`.
    - Add guardrails to prevent cross-session access.
 
 7. **Testing and Quality Gates**
@@ -81,4 +83,3 @@ Understanding the core architectural drivers, such as performance, scalability, 
 6. **Feature flows**: build account, trading, and reporting UI flows.
 7. **Testing & QA**: add unit, API, and UI tests.
 8. **Docs & ops**: finalize README updates and deployment guidance.
-
