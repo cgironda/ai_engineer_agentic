@@ -19,7 +19,7 @@ pip install -r $HOME/agentic/crew_prj/dev_team/output_cp/requirements.txt
 
 ### Frontend (Node)
 ```bash
-cd ~./agentic/crew_prj/dev_team/ui
+cd $HOME/agentic/crew_prj/dev_team/ui
 PATH=$HOME/.nvm/versions/node/v20.19.6/bin:$PATH npm install
 ```
 
