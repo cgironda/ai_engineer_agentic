@@ -1,18 +1,23 @@
 # DevTeam Crew
 
-Welcome to the DevTeam Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Welcome to the DevTeam Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. The goal is to enable agents to collaborate effectively on complex tasks.
 
-## Installation
+## Prerequisites
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+Mke sure you have the following installed on your system:
 
-First, if you haven't already, install uv:
+1. Python version 3.10 to 3.13
+2. [UV](https://docs.astral.sh/uv/), for dependency management and package handling
+
+### Installation
+
+If you haven't already, install uv:
 
 ```bash
 pip install uv
 ```
 
-Next, navigate to your project directory and install the dependencies:
+Navigate to your project directory and install the dependencies:
 
 (Optional) Lock the dependencies and install them by using the CLI command:
 ```bash
@@ -41,20 +46,20 @@ Ensure `OPENAI_API_KEY` is set in `crew_prj/dev_team/.env` before running.
 
 ## Running the Project
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+To start your crew of AI agents and begin task execution, run this from the root folder of the project:
 
 ```bash
 $ cd crew_prj/dev_team
 $ uv run --active crewai run
 ```
 
-This command initializes the dev_team Crew, assembling the agents and assigning them tasks as defined in your configuration.
+This command initializes the dev_team Crew, assembles the agents, and assigns them tasks as defined in the configuration.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+This unmodified example will create a `report.md` file with the output of research on LLMs in the root folder.
 
 ### Outputs
 
-The crew writes generated artifacts to `output/`:
+The crew writes generated artifacts to the file `output/`:
 
 - `output/{module_name}_design.md`: Design doc for the backend module.
 - `output/{module_name}`: Generated backend module.
@@ -63,7 +68,7 @@ The crew writes generated artifacts to `output/`:
 
 ### Troubleshooting: Docker + Code Interpreter
 
-If you see a Code Interpreter error about fetching the server API version, make sure:
+If you see a Code Interpreter error about fetching the server API version, check that:
 
 - Docker Desktop is running
 - `OPENAI_API_KEY` is set in `crew_prj/dev_team/.env`
@@ -80,7 +85,7 @@ $ uv run --active crewai run
 
 ## Understanding Your Crew
 
-The dev_team Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+The dev_team Crew includes several AI agents, each with their own roles, goals, and tools. They work together on tasks listed in `config/tasks.yaml`, using their combined skills to handle complex projects. The `config/agents.yaml` file describes what each agent can do and how they are set up.
 
 ### Agents Overview
 
@@ -116,10 +121,8 @@ $ python app.py
 
 ## Support
 
-For support, questions, or feedback regarding the DevTeam Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
+If you need help, have questions, or want to share feedback about DevTeam Crew check:
+- Visit [documentation](https://docs.crewai.com)
+- Reach out to [GitHub repository](https://github.com/joaomdmoura/crewai)
 - [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+- [Chat with the docs](https://chatg.pt/DWjSBZn)
