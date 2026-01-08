@@ -17,12 +17,9 @@ class TestAPI(unittest.TestCase):
         )
         payload = response.json()
         self.assertTrue(payload["success"])
-        token = payload["data"]["token"]
+        self.assertNotIn("token", payload.get("data", {}))
 
-        status_response = self.client.get(
-            "/api/status",
-            headers={"X-Session-Token": token},
-        )
+        status_response = self.client.get("/api/status")
         status_payload = status_response.json()
         self.assertTrue(status_payload["success"])
         self.assertEqual(status_payload["data"]["account"]["username"], "alice")
@@ -39,12 +36,10 @@ class TestAPI(unittest.TestCase):
             json={"username": "bob", "initial_deposit": 1000},
         )
         payload = response.json()
-        token = payload["data"]["token"]
 
         trade_response = self.client.post(
             "/api/trade/buy",
             json={"symbol": "BAD", "quantity": 1},
-            headers={"X-Session-Token": token},
         )
         trade_payload = trade_response.json()
         self.assertFalse(trade_payload["success"])

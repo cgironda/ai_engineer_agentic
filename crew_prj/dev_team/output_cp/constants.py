@@ -1,2 +1,3 @@
 SUPPORTED_SYMBOLS = ("AAPL", "TSLA", "GOOGL")
 SESSION_HEADER = "X-Session-Token"
+SESSION_COOKIE_NAME = "session_token"
