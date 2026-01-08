@@ -1,4 +1,3 @@
-import { get } from 'svelte/store';
 import {
   type AccountData,
   type ApiResponse,
@@ -8,25 +7,19 @@ import {
   type TransactionsData,
   type TradeSnapshot
 } from './types';
-import { sessionToken } from './session';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000';
-
-const withToken = () => {
-  const token = get(sessionToken);
-  return token ? { 'X-Session-Token': token } : {};
-};
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
   const headers = {
     'Content-Type': 'application/json',
-    ...withToken(),
     ...(options.headers ?? {})
   };
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
-    headers
+    headers,
+    credentials: 'include'
   });
 
   return (await response.json()) as ApiResponse<T>;
@@ -61,5 +54,14 @@ export const api = {
   status: () => request<AccountData>('/api/status'),
   holdings: () => request<HoldingsData>('/api/holdings'),
   transactions: () => request<TransactionsData>('/api/transactions'),
-  prices: () => request<PricesData>('/api/prices')
+  prices: () => request<PricesData>('/api/prices'),
+  setSession: (token: string) =>
+    request<AccountData>('/api/session', {
+      method: 'POST',
+      body: JSON.stringify({ token })
+    }),
+  logout: () =>
+    request<{}>('/api/logout', {
+      method: 'POST'
+    })
 };

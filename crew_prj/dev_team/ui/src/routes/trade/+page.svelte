@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { api } from '$lib/api';
+  import { setSessionActive } from '$lib/session';
   import type { AccountSummary } from '$lib/types';
 
   let depositAmount = 1000;
@@ -16,6 +17,9 @@
     const response = await api.status();
     if (response.success && response.data) {
       status = response.data.account;
+      setSessionActive(true);
+    } else {
+      setSessionActive(false);
     }
   };
 

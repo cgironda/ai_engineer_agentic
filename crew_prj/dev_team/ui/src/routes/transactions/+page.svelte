@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { api } from '$lib/api';
+  import { setSessionActive } from '$lib/session';
 
   let transactions: string[] = [];
   let message = '';
@@ -14,10 +15,12 @@
       const response = await api.transactions();
       if (!response.success) {
         error = response.message;
+        setSessionActive(false);
         return;
       }
       transactions = response.data?.transactions ?? [];
       message = response.message;
+      setSessionActive(true);
     } catch (err) {
       error = 'Unable to load transactions.';
     } finally {

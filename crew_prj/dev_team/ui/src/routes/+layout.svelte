@@ -1,9 +1,12 @@
 <script lang="ts">
   import '../app.css';
-  import { sessionToken, clearSessionToken } from '$lib/session';
-  import { derived } from 'svelte/store';
+  import { api } from '$lib/api';
+  import { sessionActive, setSessionActive } from '$lib/session';
 
-  const hasToken = derived(sessionToken, ($token) => Boolean($token));
+  const handleLogout = async () => {
+    await api.logout();
+    setSessionActive(false);
+  };
 </script>
 
 <svelte:head>
@@ -30,8 +33,8 @@
       <a href="/trade">Trade</a>
       <a href="/transactions">Transactions</a>
       <a href="/settings">Settings</a>
-      {#if $hasToken}
-        <button class="ghost" on:click={clearSessionToken}>Clear Session</button>
+      {#if $sessionActive}
+        <button class="ghost" on:click={handleLogout}>Clear Session</button>
       {/if}
     </nav>
   </header>

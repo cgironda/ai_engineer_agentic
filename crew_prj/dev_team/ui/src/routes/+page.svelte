@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { api } from '$lib/api';
-  import { sessionToken, setSessionToken } from '$lib/session';
+  import { setSessionActive } from '$lib/session';
   import PortfolioChart from '$lib/PortfolioChart.svelte';
   import type { AccountSummary, HoldingSnapshot, PricesData } from '$lib/types';
 
@@ -15,9 +15,6 @@
   let loading = false;
 
   const refresh = async () => {
-    if (!$sessionToken) {
-      return;
-    }
     loading = true;
     error = '';
     try {
@@ -28,8 +25,10 @@
       ]);
       if (!statusResponse.success) {
         error = statusResponse.message;
+        setSessionActive(false);
       } else {
         status = statusResponse.data?.account ?? null;
+        setSessionActive(true);
       }
       if (holdingsResponse.success) {
         holdings = holdingsResponse.data ?? null;
@@ -56,10 +55,10 @@
       }
       const data = response.data;
       if (data) {
-        setSessionToken(data.token);
         status = data.account;
         holdings = data.holdings;
         message = response.message;
+        setSessionActive(true);
       }
     } catch (err) {
       error = 'Unable to create account.';
