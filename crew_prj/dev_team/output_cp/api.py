@@ -42,7 +42,7 @@ ERROR_STATUS_BY_CODE = {
     "withdraw_failed": 400,
     "buy_failed": 400,
     "sell_failed": 400,
-    "account_creation_failed": 400,
+    "account_creation_failed": 500,
 }
 
 
